@@ -2,14 +2,16 @@
 |---------------------------- KVITTERING ----------------------------|
 |--------------------------------------------------------------------|
 | Produkt                    Enhetspris    Antall      Pris          |
-| Tramadol, 100 stk, 50mg    1000.00 kr    1           0.00 kr       |
+| Ibux, 10 stk, 400mg        34.00 kr      1           34.00 kr      |
 | Zyrtec, 30 stk, 10mg       99.00 kr      1           99.00 kr      |
-| Metadon, 20 stk, 10mg      500.00 kr     1           0.00 kr       |
-| Antibac, 100 ml, 85%       119.00 kr     2           238.00 kr     |
 | Melatonin, 30 stk, 1mg     70.00 kr      1           70.00 kr      |
-| Paracet, 10 stk, 500mg     10.00 kr      3           30.00 kr      |
+| Paracet, 10 stk, 500mg     10.00 kr      1           10.00 kr      |
+| Aspirin, 20 stk, 500mg     74.00 kr      1           74.00 kr      |
+| Tramadol, 100 stk, 50mg    1000.00 kr    1           0.00 kr       |
+| Metadon, 20 stk, 10mg      500.00 kr     1           0.00 kr       |
+| Antibac, 100 ml, 85%       119.00 kr     1           119.00 kr     |
 |--------------------------------------------------------------------|
-| Tidspunkt: 11.12.21 21:18:56                                       |
-| MVA beløp: 109.25 kr                                               |
-| Sum betalt: 437.00 kr                                              |
+| Tidspunkt: 21.12.21 15:41:42                                       |
+| MVA beløp: 131.25 kr                                               |
+| Sum betalt: 525.00 kr                                              |
 |--------------------------------------------------------------------|
