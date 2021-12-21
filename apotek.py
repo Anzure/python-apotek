@@ -10,7 +10,7 @@ from lib.status import Status
 from lib.tastatur import krev_tall, krev_svar
 from lib.autentisering import krev_innlogging
 from lib.utskrift import vis_varelager, vis_handlekurv, skriv_ut_kvittering
-from lib.varelager import hent_varelager
+from lib.varelager import hent_varelager, oppdater_lager
 from lib.regnskap import lagre_til_regnskap
 from datetime import datetime
 
@@ -27,10 +27,16 @@ def krev_handlekurv():
     while apotek_stauts == Status.HANDLEKURV:
         varenummer = krev_tall("varenummer")
         produkt = varelager[varenummer]
+        lagertall = produkt.antall
         print(f"{produkt.navn}")
         print(f"- Reseptbelagt: {produkt.reseptbelagt}")
         print(f"- Pris: {format(produkt.pris, '.2f')} kr")
         print(f"- Hylle: {produkt.hylle}")
+        print(f"- På lager: {lagertall}")
+
+        if lagertall <= 0:
+            print("Produktet er ikke på lager!")
+            continue
 
         if produkt.reseptbelagt:
             resept_status = krev_svar("Er resept gydlig (Y/N)?")
@@ -38,6 +44,15 @@ def krev_handlekurv():
                 exit()
 
         antall = krev_tall("antall")
+        if antall > lagertall:
+            print("Det er ikke nok på lager!")
+            continue
+
+        for i in range(0, len(handlekurv)):
+            duplikat = handlekurv[i]
+            if duplikat[0].varenummer == varenummer:
+                handlekurv.remove(duplikat)
+
         pris = produkt.pris * antall
         if produkt.reseptbelagt:
             pris = 0
@@ -84,4 +99,5 @@ if not betalt_status:
 tid = datetime.now().strftime("%d.%m.%y %H:%M:%S")
 skriv_ut_kvittering(tid, handlekurv, total_mva, total_pris)
 lagre_til_regnskap(tid, total_mva, total_pris)
+oppdater_lager(varelager, handlekurv)
 print("Handel fullført, se kvittering.")
