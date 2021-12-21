@@ -5,11 +5,13 @@
 ######################################
 # PIN kode er: 4567                  #
 ######################################
-from modeller.status import Status
-from tjenester.tastatur import krev_tall, krev_svar
-from tjenester.autentisering import krev_innlogging
-from tjenester.utskrift import vis_varelager, vis_handlekurv, skriv_ut_kvittering
-from tjenester.varelager import hent_varelager
+from lib.status import Status
+from lib.tastatur import krev_tall, krev_svar
+from lib.autentisering import krev_innlogging
+from lib.utskrift import vis_varelager, vis_handlekurv, skriv_ut_kvittering
+from lib.varelager import hent_varelager
+from oversikt import lagre_til_regnskap
+from datetime import datetime
 
 apotek_stauts = Status.OPPSTART
 apotek_pin_hash = "bb4e331a72336b0c49f49541c426768d3e4afa20"
@@ -64,7 +66,7 @@ if not innlogging:
 
 # Registrer varer
 apotek_stauts = Status.HANDLEKURV
-vis_varelager()
+vis_varelager(varelager)
 handlevogn = krev_handlekurv()
 handlekurv = handlevogn[0]
 total_mva = handlevogn[1]
@@ -78,5 +80,7 @@ betalt_status = krev_svar("Har kunden betalt (Y/N)?")
 if not betalt_status:
     print("Betaling avbrutt.")
     exit()
-skriv_ut_kvittering(handlekurv, total_mva, total_pris)
+tid = datetime.now().strftime("%d.%m.%y %H:%M:%S")
+skriv_ut_kvittering(tid, handlekurv, total_mva, total_pris)
+lagre_til_regnskap(tid, total_mva, total_pris)
 print("Handel fullført, se kvittering.")
