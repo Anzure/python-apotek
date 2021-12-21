@@ -1,8 +1,9 @@
 ######################################
 # Egenvalgt oppgave i Programmering  #
 # Laget av André Mathisen i FDPN2    #
-# Sist oppdatert 28. november 2021   #
+# Sist oppdatert 21. desember 2021   #
 ######################################
+# Apoteksystem - hoved program       #
 # PIN kode er: 4567                  #
 ######################################
 from lib.status import Status
@@ -10,7 +11,7 @@ from lib.tastatur import krev_tall, krev_svar
 from lib.autentisering import krev_innlogging
 from lib.utskrift import vis_varelager, vis_handlekurv, skriv_ut_kvittering
 from lib.varelager import hent_varelager
-from oversikt import lagre_til_regnskap
+from lib.regnskap import lagre_til_regnskap
 from datetime import datetime
 
 apotek_stauts = Status.OPPSTART
